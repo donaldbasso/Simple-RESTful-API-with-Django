@@ -13,8 +13,10 @@ def index(request):
 def get_car(request, car_name):
     if request.method == 'GET':
         try:
-            car = Car.objects.get(name=car_name)
-            response = json.dumps([{ 'Car': car.name, 'Top Speed': car.top_speed}])
+            # pouvoir recuperer une image envoyee par le frontend
+            #traitement
+            #response = json.dumps([{ 'Car': car.name, 'Top Speed': car.top_speed}])
+            response = json.dumps({'imageDetected':'http://localhost:8000/media/exp4/car_000001.png', 'boundingBox':[{'class':'car','value':[1230000,1122,2222,22222,222222]},{'class':'stade','value':[1230000,1122,2222,22222,222222]}]})
         except:
             response = json.dumps([{ 'Error': 'No car with that name'}])
     return HttpResponse(response, content_type='text/json')
